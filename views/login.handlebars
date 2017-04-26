@@ -76,7 +76,10 @@ $( document ).ready(function() {
                 
                 var id_customer = result.data.customer[0].id;
                 Cookies.set('richwood-scentific', id_customer);
-                // TODO: make a cookie or otherwise store local information about the customer
+                // TODO: make a cookie or otherwise store local information 
+                //about the customer
+                console.log(result);
+                
                 window.location.href = "/";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
