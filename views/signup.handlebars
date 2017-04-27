@@ -55,10 +55,10 @@
 
 <script type="text/javascript">
 
-    
 $( document ).ready(function() {
     
-    Cookies.remove('richwood-scentific');
+    Cookies.remove('richwood-scentific-temp');
+        
 
     $("form").submit(function() { 
 
@@ -79,22 +79,28 @@ $( document ).ready(function() {
             data: JSON.stringify
             ({ "data" : { "email": email, "password": password, "first_name": first_name, "last_name": last_name } }),
             success: function (result) {
+                // TODO: make a cookie or otherwise store local information about the customer
                 
-                var id_customer = result.data.customer[0].id;
-                Cookies.set('richwood-scentific', id_customer);                // TODO: make a cookie or otherwise store local information 
-                //about the customer
-                console.log(result);
+            
+   var id_customer = Cookies.get('richwood-scentific');
+
+  if(id_customer ) {
+    // Logged in, cookie already exists
+     Cookies.set('richwood-scentific', id_customer);
+    console.log("using customer id: " + id_customer);
+  }
+
                 window.location.href = "/";
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                 // A failure will usually mean an account with this email already exists
                 // TODO: Properly test if it is a 403 (already exists) or something else
                 window.location.href = "/login";
-            }  
-        });
+            }  // end error function
+        }); // end ajax
 
-    });
+    }); // end form
        
-});
+}); // end document.ready 
 
 </script>

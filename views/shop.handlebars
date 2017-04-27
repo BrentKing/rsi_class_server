@@ -122,7 +122,7 @@
                   
                     for(var key in firstRecord) {
                       // We don't want id visible
-                      if(key == 'id' || key == 'id_type' || key == 'cost' || key == 'product_pic' || key == 'date_created' || key == 'date_updated' || key == 'id_scent_type') {
+                      if(key == 'id' || key == 'id_type' || key == 'cost' || key == 'product_pic' || key == 'date_created' || key == 'qty_on_hand' || key == 'date_updated' || key == 'id_scent_type') {
                         columns.push( { "title" : key, "data" : key, "visible": false } );
                       } else { 
                         // Push in the data

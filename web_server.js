@@ -66,7 +66,7 @@ app.get("/login", function (req, res) {
 
 // Cart Page
 app.get("/cart", function (req, res) {
-	res.render('cart', {layout: 'cart'});
+	res.render('cart', {layout: 'adminmain'});
 });
 
 // Cart Page

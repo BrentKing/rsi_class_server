@@ -97,18 +97,27 @@
 <script src="../assets/js/sweetalert.min.js"></script> 
 <script src="https://cdn.datatables.net/v/bs-3.3.7/dt-1.10.13/fh-3.1.2/datatables.min.js"></script>
 
+<script src="../assets/web/js/js.cookie.js"></script>
+
 <script type="text/javascript">
+    
+    var id_customer = Cookies.get('richwood-scentific');
     // "DT_RowId" will be used for row id
     $(document).ready(function() {
 
         // Inside the ready function, lets call to fill the product types select menu
         $.ajax({
-            url: "http://localhost:3000/api/cart/123",
-            dataType: "json",
+            url: "http://localhost:3000/api/cart/",
+            dataType: "json",            
             type: "GET",
-            data: {},
+            data: {
+                id_customer: id_customer,
+               quantity: '1',
+                id_product: $(this).attr("id")
+              },
+           
             success: function (result) {
-
+    
                 // vars for DataTable
                 var columns = [];
 
@@ -124,13 +133,13 @@
                     for(var key in firstRecord) {
                       // We don't want id visible
                       if(key == 'id' ) {
-                        columns.push( { "title" : key, "data" : key, "visible": true } );
+                        columns.push( { "title" : key, "data" : key, "visible": false } );
                       } else { 
                         // Push in the data
                         columns.push( { "title" : key, "data" : key } );
                       }
                     }
-                }
+                }  console.log(result.data.items);
                 // Push in our buttons as a final column
                 columns.push( {"defaultContent": "<button class=\"btn btn-default\"><i class=\"fa fa-arrow-up\"></i></button><button class=\"btn btn-delete\"><i class=\"fa fa-arrow-up\"></i></button>"} )
 

@@ -13,7 +13,7 @@
         <img src="../assets/web/images/logo.png" alt="Richwood-scentific">
       </div>
       <div class="navigation-right">
-        <a href="/cart"><img src="../assets/web/images/shopping-bag.png" alt=""></a> 
+        <a href="/cart" + result.data.id_customer><img src="../assets/web/images/shopping-bag.png" alt=""></a> 
         
         <form method="get" action="/login">
         <button class="login-btn">Login</button>
@@ -106,14 +106,15 @@ $( document ).ready(function() {
 
   var id_customer = Cookies.get('richwood-scentific');
 
-  if(id_customer) {
+  if(id_customer /*|| or sign up customer*/) {
     // Logged in, cookie already exists
+     Cookies.set('richwood-scentific', id_customer);
     console.log("using customer id: " + id_customer);
-  } else {
-    // Not logged in, create temp uuid and make a cookie
-    var id_customer = generateUUID();
-    Cookies.set('richwood-scentific', id_customer);
-    console.log("generated a temp id: " + id_customer);
+  } else {// if we are not, make us a logged in customer
+   // Register customer, create uuid, and make a cookie
+   var id_customer = generateUUID();
+    Cookies.set('richwood-scentific-temp', id_customer);
+    console.log("registered new user, " + id_customer);
   }
 
 
