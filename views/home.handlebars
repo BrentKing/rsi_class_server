@@ -8,10 +8,10 @@
           </form>
         
        <!-- there was 3 prod# code line 120 <a href="#" id="prod3"></a>-->
-      </div>
+      </div> <!--End class "navigation-left"-->
       <div class="navigation-center">
         <img src="../assets/web/images/logo.png" alt="Richwood-scentific">
-      </div>
+      </div> <!--End class "navigation-center"-->
       <div class="navigation-right">
         <a href="/cart" + result.data.id_customer><img src="../assets/web/images/shopping-bag.png" alt=""></a> 
         
@@ -20,13 +20,10 @@
           </form>
           
           
-          <a href="/admin"><img src="../assets/web/images/infin.png" alt=""style="width:40px;height:40px;"hspace="20">
-              </img>
-          </a>
-                                                                    
-                                    
-      </div>
-    </div>
+          <a href="/admin"><img src="../assets/web/images/infin.png" alt=""style="width:40px;height:40px;"hspace="20"></a>
+                                                                                                
+      </div> <!--End class "navigation-right"-->
+    </div> <!--End class "navigation"-->
 
     <!-- Slider Wrapper -->
     <div class="css-slider-wrapper">
@@ -110,12 +107,12 @@ $( document ).ready(function() {
     // Logged in, cookie already exists
      Cookies.set('richwood-scentific', id_customer);
     console.log("using customer id: " + id_customer);
-  } else {// if we are not, make us a logged in customer
+  } /* End if*/ else {// if we are not, make us a logged in customer
    // Register customer, create uuid, and make a cookie
    var id_customer = generateUUID();
     Cookies.set('richwood-scentific-temp', id_customer);
     console.log("registered new user, " + id_customer);
-  }
+  } // End else
 
 
 //  $.ajax({
@@ -164,16 +161,16 @@ $( document ).ready(function() {
                   // Is this a Best Seller? If so, replace the New Product text with Best Seller
                   if(result.data.products[x].best_seller == true) {
                     $(classToFind).find('h4').html('Best Seller');
-                  }
+                  } // End best seller
               
                 } // End if x < 4
               
               } // End for loop
             
-            } // End did we get any records
+            } // End did we get any products
 
         } // End success function
-    });
+    }); // End Ajax call.
 
     $('.slider').on( 'click', 'button', function () {
         //alert ($(this).closest("div").attr("class"));
@@ -186,26 +183,27 @@ $( document ).ready(function() {
                 quantity: '1',
                 id_product: $(this).attr("id_product"),
                   id: $(this).attr("id")
-              },
+              }, // End data
               success: function (result) {
                   console.log(result);
-              }
-          });
-    } );
+              } // End success
+            
+          }); // End ajax call
+        
+    }); // End slider.on('click')
     
     function generateUUID() { // Public Domain/MIT
       var d = new Date().getTime();
       if (typeof performance !== 'undefined' && typeof performance.now === 'function'){
           d += performance.now(); //use high-precision timer if available
-      }
+      } // End if
       return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
           var r = (d + Math.random() * 16) % 16 | 0;
           d = Math.floor(d / 16);
           return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-      });
-    }
+      }); // End return
+        
+    } // End generateUUID
     
-
-});
-
+}); // End document.ready
 </script>
